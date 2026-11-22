@@ -23,6 +23,10 @@ qt_add_qml_module(Motor_Application
         frontend/Main.qml
 )
 
+target_include_directories(Motor_Application PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/bridge
+)
+
 target_link_libraries(Motor_Application PRIVATE
     motor_core
     Qt6::Quick

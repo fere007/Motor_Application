@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt("C://ws//Motor_Application//backend//motor_output.csv", delimiter=",", skiprows=1)
+data = np.loadtxt("motor_output.csv", delimiter=",", skiprows=1)
 
 time = data[:, 0]
 current = data[:, 1]

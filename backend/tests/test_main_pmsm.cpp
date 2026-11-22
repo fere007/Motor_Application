@@ -63,8 +63,7 @@ int main() {
     outFile.close();
     std::cout << "Simulation beendet. Daten in motor_output.csv gespeichert.\n";
     
-    // Optional: Direkt das Python Plot-Skript aufrufen
-    std::system("py tests/plot_pmsm_simu.py");
-    
+    std::system("py \"" TESTS_DIR "/plot_pmsm_simu.py\"");
+
     return 0;
 }

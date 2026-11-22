@@ -29,6 +29,7 @@ int main() {
     std::chrono::duration<double> elapsed = end - start;
     std::cout << "Simulation completed in " << elapsed.count() << " seconds." << std::endl;
 
-std::system("py tests/plot_simulation.py");
+    std::system("py \"" TESTS_DIR "/plot_simulation.py\"");    
+
     return 0;
 }

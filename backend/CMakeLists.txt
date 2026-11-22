@@ -20,10 +20,15 @@ target_include_directories(motor_core PUBLIC
 
 option(BUILD_BACKEND_TESTS "Baut die CLI-Testprogramme für DC und PMSM" ON)
 
+# - Übergibt den absoluten Pfad zum tests/-Ordner als Makro TESTS_DIR an beide Test-Targets
+# - Achtung: Funktioniert auf jedem Rechner ohne hartcodierte Pfade im C++-Code
+
 if(BUILD_BACKEND_TESTS)
     add_executable(test_dc tests/test_main_dc.cpp)
     target_link_libraries(test_dc PRIVATE motor_core)
+    target_compile_definitions(test_dc PRIVATE TESTS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/tests")
 
     add_executable(test_pmsm tests/test_main_pmsm.cpp)
     target_link_libraries(test_pmsm PRIVATE motor_core)
+    target_compile_definitions(test_pmsm PRIVATE TESTS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/tests")
 endif()
