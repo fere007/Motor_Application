@@ -1,0 +1,17 @@
+# Build-Ordner & CMake
+build/
+out/
+CMakeUserPresets.json
+
+# Kompilierte Dateien
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# IDE-Dateien
+.vscode/
+.vs/
+*.user
