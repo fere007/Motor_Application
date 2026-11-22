@@ -10,6 +10,7 @@ CMakeUserPresets.json
 *.dll
 *.lib
 *.pdb
+*.ini
 
 # IDE-Dateien
 .vscode/
