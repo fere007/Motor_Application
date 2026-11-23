@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
     direction TB
 
@@ -17,13 +18,13 @@ classDiagram
         -double m_inductance
         -double m_speed
         -double m_current
-        +startSimulation() Q_INVOKABLE
-        +stopSimulation() Q_INVOKABLE
-        +setInductance(double)
-        +setMotorType(QString)
-        <<signal>> requestSetInductance(double)
-        <<signal>> requestStart()
-        <<signal>> telemetryChanged()
+        +startSimulation() void
+        +stopSimulation() void
+        +setInductance(double) void
+        +setMotorType(QString) void
+        +signal_requestSetInductance(double)
+        +signal_requestStart()
+        +signal_telemetryChanged()
     }
 
     class SimulationWorker {
@@ -31,25 +32,26 @@ classDiagram
         -unique_ptr~DC_Motor_Model~ m_dcMotor
         -QTimer* m_timer
         -double m_voltage
-        +setMotorType(QString) slot
-        +setInductance(double) slot
-        +startSimulation() slot
-        +stopSimulation() slot
-        -step() slot
-        <<signal>> simulationUpdated(double, double)
+        +setMotorType(QString) void
+        +setInductance(double) void
+        +startSimulation() void
+        +stopSimulation() void
+        -step() void
+        +signal_simulationUpdated(double, double)
     }
 
     class DC_Motor_Model {
         <<Pure C++ / motor_core>>
         -double R, L, Kt, Ke, J, B
         -double i, w
-        +update(double voltage, double dt)
+        +update(double voltage, double dt) void
         +getCurrent() double
         +getSpeed() double
         +getL() double
-        +setL(double)
+        +setL(double) void
     }
 
-    Main_qml --> MotorBackend : nutzt via Q_PROPERTY & Q_INVOKABLE
-    MotorBackend *-- SimulationWorker : steuert via Signals/Slots (QThread)
-    SimulationWorker *-- DC_Motor_Model : besitzt (unique_ptr)
+    Main_qml --> MotorBackend : Q_PROPERTY & Q_INVOKABLE
+    MotorBackend *-- SimulationWorker : Signals/Slots (QThread)
+    SimulationWorker *-- DC_Motor_Model : unique_ptr
+```
