@@ -1,8 +1,3 @@
-/*
- * - Helles 2-Spalten-Dashboard mit weißen Eingabefeldern und sauberer Scrollbar
- * - Steuerung (grüner IDE-Start-Button, Reset, Status) liegt fest oben rechts über den Plots
- * - Achtung: Explizite background/contentItem-Styles verhindern unsichtbaren Text im Windows-Style
- */
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -28,7 +23,6 @@ ApplicationWindow {
     readonly property bool isPmsm: motorTypeCombo.currentText === "PMSM"
     readonly property bool isBatchMode: simModeCombo.currentText === "Zeitgesteuert (Batch)"
 
-    // --- Wiederverwendbare helle Karte ---
     component SectionCard: Frame {
         property string heading: ""
         default property alias content: innerCol.data

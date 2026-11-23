@@ -13,14 +13,13 @@ class DC_Motor_Model {
         double i;   //Strom
         double w;   //Drehzahl
     public:
-        // Konstruktor (wird beim Erstellen eines Objekts aufgerufen)
         DC_Motor_Model(double R, double L, double Kt, double Ke, double J, double B);
 
-        // Die Update-Funktion (berechnet einen Zeitschritt)
         void update(double voltage, double dt);
-
-        // Getter-Funktionen (um die Werte später im main.cpp auszulesen)
-        // Das "const" am Ende sagt C++: "Diese Funktion verändert keine Variablen"
+        //Getter fuer Zustandsgroessen
         double getCurrent() const;
         double getSpeed() const;
+        //Getter/Setter fuer Motorparameter
+        double getL() const { return L; }
+        void setL(double value) { if (value > 0.0) L = value; }
 };

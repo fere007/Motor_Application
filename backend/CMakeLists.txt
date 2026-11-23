@@ -1,6 +1,5 @@
 # - Baut die statische Lib "motor_core" (für GUI & Tests)
 # - Baut optional zwei CLI-Testprogramme (test_dc, test_pmsm) im Unterordner tests/
-# - Achtung: Standalone-Block erlaubt Build direkt in backend/ oder über das Root-CMake
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     cmake_minimum_required(VERSION 3.21)
@@ -19,9 +18,6 @@ target_include_directories(motor_core PUBLIC
 )
 
 option(BUILD_BACKEND_TESTS "Baut die CLI-Testprogramme für DC und PMSM" ON)
-
-# - Übergibt den absoluten Pfad zum tests/-Ordner als Makro TESTS_DIR an beide Test-Targets
-# - Achtung: Funktioniert auf jedem Rechner ohne hartcodierte Pfade im C++-Code
 
 if(BUILD_BACKEND_TESTS)
     add_executable(test_dc tests/test_main_dc.cpp)

@@ -23,3 +23,4 @@ double DC_Motor_Model::getCurrent() const {
 double DC_Motor_Model::getSpeed() const {
     return w;
 }
+

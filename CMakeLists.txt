@@ -19,8 +19,11 @@ qt_add_qml_module(Motor_Application
     SOURCES
         bridge/MotorBackend.h
         bridge/MotorBackend.cpp
+        bridge/SimulationWorker.h
+        bridge/SimulationWorker.cpp
+
     QML_FILES
-        frontend/Main.qml
+        frontend/main.qml
 )
 
 target_include_directories(Motor_Application PRIVATE

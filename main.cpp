@@ -1,7 +1,3 @@
-/*
- * - Einstiegspunkt der Qt-Quick-Applikation
- * - Achtung: URI ("MotorApp") und QML-Name ("Main") müssen exakt zu CMake/Main.qml passen
- */
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
@@ -9,12 +5,7 @@ int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreationFailed,
-        &app,
-        []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app,[]() { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
 
     engine.loadFromModule("MotorApp", "Main");
 
