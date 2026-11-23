@@ -23,7 +23,7 @@ qt_add_qml_module(Motor_Application
         bridge/SimulationWorker.cpp
 
     QML_FILES
-        frontend/main.qml
+        frontend/Main.qml
 )
 
 target_include_directories(Motor_Application PRIVATE

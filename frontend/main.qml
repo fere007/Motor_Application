@@ -143,6 +143,7 @@ ApplicationWindow {
                             id: motorTypeCombo
                             Layout.fillWidth: true
                             model: ["DC", "PMSM"]
+                            onCurrentTextChanged: backend.motorType = currentText
                         }
 
                         ComboBox {
@@ -213,7 +214,15 @@ ApplicationWindow {
                         CleanTextField { id: paramR; text: "2.0" }
 
                         Label { text: "L [H]:"; color: "#334155" }
-                        CleanTextField { id: paramL; text: "0.0005" }
+                        CleanTextField {id: paramL
+                                        text: "0.0005"
+                                        onTextEdited: {
+                                            let val = parseFloat(text.replace(",","."))
+                                            if (!isNaN(val)&& val>0){
+                                                backend.inductance = val
+                                            }
+                                            }
+                                        }
 
                         Label { text: "Kt [Nm/A]:"; color: "#334155" }
                         CleanTextField { id: paramKt; text: "0.1" }
@@ -306,6 +315,8 @@ ApplicationWindow {
                         textColor: "#ffffff"
                         onClicked: {
                             root.isRunning = !root.isRunning
+                            if (root.isRunning) backend.startSimulation()
+                            else backend.stopSimulation()
                             console.log(root.isRunning ? "Start" : "Stopp", "|", motorTypeCombo.currentText)
                         }
                     }
@@ -340,9 +351,10 @@ ApplicationWindow {
                 }
 
                 Label {
-                    anchors.centerIn: parent
-                    text: "Plot-Bereich (Drehzahl)"
-                    color: "#94a3b8"
+                anchors.centerIn: parent
+                text: "Drehzahl: " + (backend.currentSpeed * 60 / (2 * Math.PI)).toFixed(1) + " RPM"
+                font.pixelSize: 18
+                color: "#0f172a"
                 }
             }
 
